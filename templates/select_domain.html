@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Select Domain - STUDY</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            "spacing": {
+              "xs": "0.5rem",
+              "sm": "0.75rem",
+              "md": "1.25rem",
+              "base": "1rem",
+              "lg": "2rem",
+              "xl": "2.5rem",
+            },
+            "fontSize": {
+              "body-sm": "0.875rem",
+              "headline-md": "1.75rem",
+              "label-md": "1rem",
+            },
+            "colors": {
+              "midnight": "#0b0c10",
+              "midnight-light": "#1f2833",
+              "accent-gold": "#f5b041",
+              "accent-blue": "#45f3ff",
+              "primary": "#004ac6",
+              "primary-container": "#2563eb",
+              "on-surface": "#0b1c30",
+              "secondary": "#576065",
+              "background": "#f8f9ff",
+              "error": "#dc2626",
+              "error-container": "#fee2e2",
+              "outline-variant": "#e2e8f0",
+              "surface-container-low": "#ffffff"
+            },
+            "fontFamily": {
+              "body": ["Inter"],
+              "title": ["Plus Jakarta Sans"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e2e8f0 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-md">
+    <div class="w-full max-w-2xl glass-card rounded-2xl p-lg space-y-md relative overflow-hidden group">
+        <!-- Accent circles -->
+        <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -mr-8 -mt-8"></div>
+        <div class="absolute bottom-0 left-0 w-16 h-16 bg-accent-gold/10 rounded-tr-full -ml-4 -mb-4"></div>
+
+        <div class="text-center z-10 relative">
+            <h1 class="font-title text-headline-md font-bold text-on-surface">Welcome to STUDY</h1>
+            <p class="text-body-sm text-secondary mt-base">To personalize your experience, please select your academic stage.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-md z-10 relative mt-lg">
+            <form method="POST" action="{% url 'select_domain' %}" class="h-full">
+                {% csrf_token %}
+                <input type="hidden" name="student_type" value="school">
+                <button type="submit" class="w-full h-full text-left bg-white hover:bg-primary/5 border-2 border-transparent hover:border-primary/30 p-md rounded-xl transition-all group flex flex-col items-center justify-center space-y-sm shadow-sm cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+                        <span class="material-symbols-outlined text-[32px]">school</span>
+                    </div>
+                    <h2 class="font-title font-bold text-on-surface text-lg">School Student</h2>
+                    <p class="text-center text-secondary text-body-sm">Classes 10th & 12th, ICSE, CBSE, State Boards</p>
+                </button>
+            </form>
+
+            <form method="POST" action="{% url 'select_domain' %}" class="h-full">
+                {% csrf_token %}
+                <input type="hidden" name="student_type" value="university">
+                <button type="submit" class="w-full h-full text-left bg-white hover:bg-accent-gold/5 border-2 border-transparent hover:border-accent-gold/30 p-md rounded-xl transition-all group flex flex-col items-center justify-center space-y-sm shadow-sm cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-accent-gold/10 flex items-center justify-center text-accent-gold mb-2">
+                        <span class="material-symbols-outlined text-[32px]">account_balance</span>
+                    </div>
+                    <h2 class="font-title font-bold text-on-surface text-lg">University Student</h2>
+                    <p class="text-center text-secondary text-body-sm">Undergraduate, Postgraduate, Semester Exams</p>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
